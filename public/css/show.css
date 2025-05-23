@@ -1,0 +1,11 @@
+.descrip{
+    font-family: 'Courier New', Courier, monospace;
+    font-size:medium;
+    white-space: pre-wrap;
+    font-weight:bolder;
+}
+
+#tag{
+    margin-top:  0rem;
+    line-height: 0.5rem;
+}

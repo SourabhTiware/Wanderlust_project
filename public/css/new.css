@@ -1,0 +1,19 @@
+    .about-image{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .dropdown{
+        margin-top: 2rem;
+        margin-left: 2rem;
+        font-size: 1rem;
+        border: 1px solid rgb(171, 163, 163);
+        padding: 0.3rem;
+        border-radius: 5px;
+    }
+
+    #descrip{
+    font-family: 'Courier New', Courier, monospace;
+    font-size:medium;
+      white-space: pre-wrap;
+}

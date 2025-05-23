@@ -1,0 +1,93 @@
+<% layout("layouts/boilerplate") %>
+
+<body>
+
+
+        <div class="icons" id="filters">
+            <div class="filter" id="trending">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
+            </div>
+
+            <div class="filter" id="rooms">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+            </div>
+
+            <div class="filter" id="iconic-cities">
+                <div><i class="fa-solid fa-city"></i></div>
+                <p>Iconic Cities</p>
+            </div>
+
+            <div class="filter" id="mountains">
+                <div><i class="fa-solid fa-mountain"></i></div>
+                <p>Mountains</p>
+            </div>
+
+            <div class="filter" id="castles">
+                <div><i class="fa-brands fa-fort-awesome"></i></div>
+                <p>Castles</p>
+            </div>
+
+            <div class="filter" id="camping">
+                <div><i class="fa-solid fa-campground"></i></div>
+                <p>Camping</p>
+            </div>
+
+            <div class="filter" id="farms">
+                <div><i class="fa-solid fa-cow"></i></div>
+                <p>Farms</p>
+            </div>
+
+            <div class="filter" id="arctic">
+                <div><i class="fa-solid fa-snowflake"></i></div>
+                <p>Arctic</p>
+            </div>
+
+            <div class="filter" id="domes">
+                <div><i class="fa-solid fa-igloo"></i></div>
+                <p>Domes</p>
+            </div>
+
+            <div class="filter" id="boat">
+                <div><i class="fa-solid fa-ship"></i></div>
+                <p>Boat</p>
+            </div>
+
+            <div class="tax-toggle">
+                <div class="form-check form-switch form-check-reverse">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+                </div>
+            </div>
+        </div>
+            
+
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 mt-3" id="listing-container" class="listings">
+        <% for(let listing of allListing){ %>
+            <a class="listing-link" href="/listings/<%= listing._id %>">
+                <div class="card col listing-card" data-category="<%= listing.category %>">
+                    <img class="card-img-top" src="<%= listing.image.url %>" alt="Card image cap" style="height: 20rem;">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b><%= listing.title %></b> <br>
+
+                            &#8377;
+                            <b><span class="base-price"><%= listing.price.toLocaleString("en-IN") %></span> / Night</b>
+
+                            <i class="tax-info"> &nbsp;&nbsp;+18% GST</i>
+
+                            <br>
+
+                            <span class="price-after-tax" style="display: none;">
+                                &#8377; <%= Math.round(listing.price * 1.18).toLocaleString("en-IN") %> (Incl. GST)
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+        </div>
+
+</body>
