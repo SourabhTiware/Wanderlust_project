@@ -35,12 +35,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 
-        const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+        // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
         
         const dbUrl = process.env.ATLASDB_URL;
         async function main()
         {
-            await mongoose.connect(MONGO_URL);
+            await mongoose.connect(dbUrl);
         }
 
     
@@ -54,7 +54,7 @@ app.use(express.json());
             });
     
             const store = mongoStore.create({
-                        mongoUrl: MONGO_URL,
+                        mongoUrl: dbUrl,
                         touchAfter: 24 * 3600, // optional: time period in seconds
                     });
 
