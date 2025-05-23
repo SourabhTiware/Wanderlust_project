@@ -1,7 +1,5 @@
 <% layout("layouts/boilerplate") %>
 
-<body>
-
 
         <div class="icons" id="filters">
             <div class="filter" id="trending">
@@ -81,37 +79,46 @@
                 </div>
             </div>
         </div>
-            
+<div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 mt-3" id="listing-container" class="listings">
 
-    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 mt-3" id="listing-container" class="listings">
-        <% for(let listing of allListing){ %>
-            <a class="listing-link" href="/listings/<%= listing._id %>">
-                <div class="card col listing-card" data-category="<%= listing.category %>">
-                    <img class="card-img-top" src="<%= listing.image.url %>" alt="Card image cap" style="height: 20rem;">
-                    <div class="card-img-overlay"></div>
-                    <div class="card-body">
-                     <p class="card-text">
-                            <b><%= listing.title %></b> <br>
 
-                            &#8377;
-                            <b><span class="base-price"><%= listing.price.toLocaleString("en-IN") %></span> / Night</b>
-
-                            <!-- <i class="tax-info"> &nbsp;&nbsp;+18% GST</i> -->
-
-                            <br>
-
-                            <span class="price-after-tax" style="display: none;">
-                                &#8377; <%= Math.round(listing.price * 1.18).toLocaleString("en-IN") %> (Incl. GST)
-                            </span>
-                        </p>
-
-                    </div>
+            <% if(listings.length === 0) {  %>
+                <div class="cato">
+                    <p>Now this time, for &nbsp; <b><%= category %></b> &nbsp; category are  not avaliable </p>
+                    <p><b>Please try to find another category </b></p>
+                    <p> We will definatly try to <u>add this category for you.</u> </p>
                 </div>
-            </a>
+
+            <% } else {  %>
+            <% for(let list of listings){ %>
+                <a class="listing-link" href="/listings/<%= list._id %>">
+                    <div class="card col listing-card" data-category="<%= list.category %>">
+                        <img class="card-img-top" src="<%= list.image.url %>" alt="Card image cap" style="height: 20rem;">
+                        <div class="card-img-overlay"></div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b><%= list.title %></b> <br>
+
+                                &#8377;
+                                <b><span class="base-price"><%= list.price.toLocaleString("en-IN") %></span> / Night</b>
+
+                                <!-- <i class="tax-info"> &nbsp;&nbsp;+18% GST</i> -->
+
+                                <br>
+
+                                <span class="price-after-tax" style="display: none;">
+                                    &#8377; <%= Math.round(list.price * 1.18).toLocaleString("en-IN") %> (Incl. GST)
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            <% } %>
         <% } %>
     </div>
 
 
+    
 <script>
     document.getElementById('flexSwitchCheckDefault').addEventListener('change', async function () {
         const isChecked = this.checked;
@@ -145,7 +152,3 @@
         }
     });
 </script>
-
-
-
-</body>

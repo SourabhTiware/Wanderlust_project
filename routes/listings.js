@@ -33,8 +33,17 @@ const upload = multer({ storage}); // and store into the uploads folder.
 
    router.get("/search", wrapAsync(listingControllers.serachfind) );
 
+
 // find particular listing route
-   router.get("/particular", wrapAsync(listingControllers.particularListing));
+   // router.get("/particular", wrapAsync(listingControllers.particularListing));
+
+// category route
+
+   router.get("/category/:category", wrapAsync(listingControllers.findCategory));
+
+// toggle tax
+
+   router.get("/toggle-tax", wrapAsync(listingControllers.toggleTax));
 
 // show router
 // update router

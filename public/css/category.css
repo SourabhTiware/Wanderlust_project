@@ -1,0 +1,23 @@
+.cato{
+    background-color: #ebebeb;
+    align-items: center;
+    margin: 5rem 0 0 28rem;
+    line-height: 2rem;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#filters-container {
+  display: flex;
+  justify-content: flex-end; /* Pushes toggle to the right */
+  padding: 1rem 2rem; /* Optional spacing */
+}
+
+#filterss {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* spacing between label and toggle */
+}
+
+
+

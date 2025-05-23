@@ -34,6 +34,7 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
                 res.redirect("/listings");
             }
             // console.log(listing);
+            console.log("server map token", process.env.MAP_TOKEN);
             res.render("listings/show.ejs", {listing});
             }
 
@@ -204,24 +205,57 @@ async function serachfind(req, res) {
 
 // find particular listing
 
-async function particularListing(req, res) {
-    try {
-        let iconValue = req.query.iconValue?.trim().toLowerCase();
-        // console.log("Searching for category:", iconValue);
+// async function particularListing(req, res) {
+//     try {
+//         let iconValue = req.query.iconValue?.trim().toLowerCase();
+//         // console.log("Searching for category:", iconValue);
 
-        if (!iconValue) {
-            return res.redirect("/listings");
+//         if (!iconValue) {
+//             return res.redirect("/listings");
+//         }
+
+//         const allListing = await Listing.find({ category: iconValue });
+//         // console.log(allListing);
+//         // console.log("Found listings:", allListing.length);
+
+//         res.render("listings/index.ejs", { allListing });
+//     } catch (err) {
+//         console.error("Particular Listing Error:", err);
+//         res.status(500).send("Server Error");
+//     }
+// }
+
+// category 
+
+    async function findCategory (req,res){
+        const category = req.params.category;
+
+            try {
+                    const listings = await Listing.find({ category: category });
+                    // console.log("Fetched listings for category:", category);
+                    //console.log(listings); // ✅ check if it’s an empty array or populated
+
+    
+                    res.render('listings/category', {
+                    category: category,
+                    listings: listings,
+                });
+            } catch (err) {
+                console.error("Error fetching listings:", err);
+                res.status(500).send("Server Error");
         }
+    };
 
-        const allListing = await Listing.find({ category: iconValue });
-        // console.log(allListing);
-        // console.log("Found listings:", allListing.length);
+// toggle tax 
 
-        res.render("listings/index.ejs", { allListing });
-    } catch (err) {
-        console.error("Particular Listing Error:", err);
-        res.status(500).send("Server Error");
-    }
-}
+async function toggleTax (req, res) {
+    const allListing = await Listing.find({}); // Adjust as per your DB setup
+    const data = allListing.map(listing => ({
+        id: listing._id,
+        priceWithGST: Math.round(listing.price * 1.18).toLocaleString("en-IN"),
+    }));
+    res.json(data);
+};
 
-module.exports = {index, newRoute, show, create, edit, update, deleteroute, serachfind, particularListing};
+
+module.exports = {index, newRoute, show, create, edit, update, deleteroute, serachfind, findCategory, toggleTax};

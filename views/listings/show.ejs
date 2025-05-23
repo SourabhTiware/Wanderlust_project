@@ -1,8 +1,6 @@
 <% layout("layouts/boilerplate") %>
-
 <script>
-    const mapToken = "<%= process.env.MAP_TOKEN %>";  
-    // access the maptoken from the ".env" and maptoken access in /public/js/map.js file. 
+    const mapToken = <%- JSON.stringify(process.env.MAP_TOKEN) %>;  
     const listing = <%- JSON.stringify(listing) %>;
 </script>
 

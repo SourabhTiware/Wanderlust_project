@@ -4,6 +4,7 @@
         align-items: center;
     }
 
+
     .filter {
         text-align: center;
         margin-right: 2rem;
@@ -16,14 +17,24 @@
         cursor: pointer;
     }
 
+    .filter a{
+        color: black;
+        text-decoration: black;
+    }
+
+    .filter a:hover{
+        color: black;
+        text-decoration: black;
+    }
+
     .filter p {
         font-size: 0.8rem;
     }
 
-    .tax-info {
+    /* .tax-info {
         display: none;
         background-color: rgb(235, 54, 129);
-    }
+    } */
 
     .tax-toggle {
         border: 1px solid black;

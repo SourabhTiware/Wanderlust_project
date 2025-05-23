@@ -110,10 +110,10 @@ app.use((req,res,next)=>{
     app.use('/', userRouter);
 
 
-    app.get("/", (req,res) =>{
-        res.render("home");
-    });
 
+    // app.get("/", (req,res) =>{
+    //     res.render("home");
+    // });
 
     app.all("*", (req,res,next)=>
         {
